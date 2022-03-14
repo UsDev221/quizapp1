@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const TextFieldControl = () => {
+  const classes = useStyles();
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const handleChange = (e) => {

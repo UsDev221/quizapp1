@@ -28,7 +28,6 @@ export const SelectField = (props) => {
   const { label, options } = props;
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
-  console.log(options);
 
   const handleChange = (e) => {
     setValue(e.target.value);

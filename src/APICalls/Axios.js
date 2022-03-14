@@ -9,7 +9,6 @@ const Axios = ({ url }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(url);
     const fetchData = async () => {
       await axios
         .get(url)

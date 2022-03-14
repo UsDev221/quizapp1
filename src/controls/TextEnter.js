@@ -6,6 +6,7 @@ import { handleUsername } from "../redux/actions";
 const useStyles = makeStyles((theme) => ({
   txtCtrl: {
     width: "50%",
+    border: "black",
   },
   [theme.breakpoints.down("sm")]: {
     width: "100%",

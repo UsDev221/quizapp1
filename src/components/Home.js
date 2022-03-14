@@ -14,28 +14,27 @@ import Box from "@material-ui/core/Box";
 import { TextEnter } from "../controls/TextEnter";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
   loginForm: {
     width: "60%",
     margin: "15px auto",
     justifyContent: "center",
     alignItems: "center",
     padding: "20px",
+    [theme.breakpoints.down("sm")]: {
+      width: "95%",
+    },
   },
   paperStyle: {
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "column",
     width: "60vw",
-    height: "75vh",
+    height: "75%",
     margin: "100px auto",
     [theme.breakpoints.down("sm")]: {
-      width: "90vw",
-      margin: "10px auto",
+      width: "95vw",
+      margin: "10px 5px",
+      height: "75%",
     },
   },
   topic: {

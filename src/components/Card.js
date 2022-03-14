@@ -16,13 +16,15 @@ const useStyles = makeStyles((theme) => ({
   paperStyle: {
     display: "flex",
     flexWrap: "wrap",
-    "& > *": {
-      margin: "100px auto",
-      width: "60vw",
-      height: "60vh",
-      [theme.breakpoints.down("sm")]: {
-        width: "100vw",
-      },
+    flexDirection: "Column",
+    margin: "100px auto",
+    width: "60vw",
+    height: "80%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100vw",
+      height: "80%",
+      margin: "60px auto",
+      padding: "10px 5px",
     },
   },
   questionList: {
@@ -142,8 +144,6 @@ export default function Card() {
 
   const { response, loading } = Axios({ url: apiUrl });
 
-  console.log(response);
-
   useEffect(() => {
     if (response?.results.length) {
       const question = response.results[questionNmber];
@@ -154,8 +154,6 @@ export default function Card() {
         question.correct_answer
       );
       setAnsOptions(answers);
-      console.log(ansOptions);
-      console.log("Correct answer " + question.correct_answer);
     }
   }, [response, questionNmber]);
 
@@ -164,15 +162,9 @@ export default function Card() {
       <CircularProgress />
     </Box>;
   }
-  console.log("api url " + apiUrl);
-  console.log("qc" + question_category);
-  console.log("qd" + question_difficulty);
-  console.log("qt" + question_type);
-  console.log("noq" + number_of_questions);
 
   function nextQuestion() {
     const question = response.results[questionNmber];
-    console.log("Clicked answer " + clickedAns);
     changeActiveState({
       ...activeState,
       activeAnswer: -1,
@@ -189,7 +181,6 @@ export default function Card() {
   }
 
   const handleClick = (a, id) => {
-    console.log(id);
     setClickedAns(a);
     changeActiveState({
       ...activeState,
@@ -213,36 +204,34 @@ export default function Card() {
       </div>
       <Grid container>
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <div className={classes.paperStyle}>
-            <Paper elevation={3}>
-              <div className={classes.questionList}>
-                <div className={classes.qNumber}>{questionNmber + 1}</div>
-                <div className={classes.question}>
-                  {decode(response?.results[questionNmber].question)}
-                </div>
-                <div className={classes.answers}>
-                  {ansOptions.map((a, id) => (
-                    <div
-                      key={id}
-                      className={changeActiveInactive(id)}
-                      onClick={() => handleClick(a, id)}
-                    >
-                      {decode(a)}
-                    </div>
-                  ))}
-                </div>
+          <Paper elevation={3} className={classes.paperStyle}>
+            <div className={classes.questionList}>
+              <div className={classes.qNumber}>{questionNmber + 1}</div>
+              <div className={classes.question}>
+                {decode(response?.results[questionNmber].question)}
               </div>
-              <Button
-                variant="contained"
-                size="small"
-                className={classes.button}
-                endIcon={<NavigateNextIcon />}
-                onClick={nextQuestion}
-              >
-                Next
-              </Button>
-            </Paper>
-          </div>
+              <div className={classes.answers}>
+                {ansOptions.map((a, id) => (
+                  <div
+                    key={id}
+                    className={changeActiveInactive(id)}
+                    onClick={() => handleClick(a, id)}
+                  >
+                    {decode(a)}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.button}
+              endIcon={<NavigateNextIcon />}
+              onClick={nextQuestion}
+            >
+              Next
+            </Button>
+          </Paper>
         </Grid>
       </Grid>
     </div>
