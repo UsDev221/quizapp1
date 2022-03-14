@@ -10,11 +10,13 @@ const useStyles = makeStyles((theme) => ({
   paperStyle: {
     display: "flex",
     flexWrap: "wrap",
-    "& > *": {
-      margin: "70px auto",
-      width: "60vw",
-      height: "60vh",
-      padding: "20px",
+    margin: "70px auto",
+    width: "60vw",
+    height: "60vh",
+    padding: "20px",
+    [theme.breakpoints.down("sm")]: {
+      width: "90vw",
+      height: "70vh",
     },
   },
   text: {
@@ -35,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     marginTop: "50px",
+    width: "100%",
   },
   correct: {
     fontSize: 100,
@@ -42,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   message: {
     fontSize: "15px",
-    marginTop: "30px",
+    margin: "auto",
     animationName: "$zoomIn",
     animationDuration: "4s",
     animationIterationCount: "infinite",
@@ -74,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#4E5BA8",
     },
     width: "20%",
+    [theme.breakpoints.down("sm")]: {
+      width: "40%",
+    },
   },
 }));
 
@@ -106,28 +112,26 @@ export default function Results() {
     <div>
       <Grid container spacing={5}>
         <Grid item md={12} lg={12}>
-          <div className={classes.paperStyle}>
-            <Paper elevation={3}>
-              <div className={classes.scoreDetails}>
-                <div className={classes.text}>{username}'s Score is</div>
-                <div className={classes.score}>
-                  {score}/{number_of_questions}
-                </div>
-                <CheckCircleIcon className={classes.correct} />
-                <SpeedIcon className={classes.correct} />
-                <div>
-                  <Button
-                    className={classes.startBtn}
-                    varient="contained"
-                    onClick={handleStartAgain}
-                  >
-                    Start again
-                  </Button>
-                </div>
+          <Paper elevation={3} className={classes.paperStyle}>
+            <div className={classes.scoreDetails}>
+              <div className={classes.text}>{username}'s Score is</div>
+              <div className={classes.score}>
+                {score}/{number_of_questions}
               </div>
-              <div className={classes.message}>{showFeedback()}</div>
-            </Paper>
-          </div>
+              <CheckCircleIcon className={classes.correct} />
+              <SpeedIcon className={classes.correct} />
+              <div>
+                <Button
+                  className={classes.startBtn}
+                  varient="contained"
+                  onClick={handleStartAgain}
+                >
+                  Start again
+                </Button>
+              </div>
+            </div>
+            <div className={classes.message}>{showFeedback()}</div>
+          </Paper>
         </Grid>
       </Grid>
     </div>

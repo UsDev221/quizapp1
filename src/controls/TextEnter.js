@@ -1,9 +1,19 @@
-import { Box, FormControl, TextField } from "@material-ui/core";
+import { Box, FormControl, TextField, makeStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleUsername } from "../redux/actions";
 
+const useStyles = makeStyles((theme) => ({
+  txtCtrl: {
+    width: "50%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+  },
+}));
+
 export const TextEnter = (props) => {
+  const classes = useStyles();
   const [value, setValue] = useState();
   const { label, type } = props;
   const dispatch = useDispatch();
@@ -15,7 +25,7 @@ export const TextEnter = (props) => {
   };
 
   return (
-    <Box my={2} mx="auto" width="50%">
+    <Box my={2} mx="auto" className="txtCtrl">
       <FormControl size="small" fullWidth>
         <TextField
           onChange={handleOnChange}

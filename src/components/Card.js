@@ -13,10 +13,6 @@ import Person from "@material-ui/icons/Person";
 import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
   paperStyle: {
     display: "flex",
     flexWrap: "wrap",
@@ -24,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
       margin: "100px auto",
       width: "60vw",
       height: "60vh",
+      [theme.breakpoints.down("sm")]: {
+        width: "100vw",
+      },
     },
   },
   questionList: {
@@ -212,8 +211,8 @@ export default function Card() {
         Hi, {username}
         <Person className={classes.person} />
       </div>
-      <Grid container spacing={5}>
-        <Grid item md={12} lg={12}>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
           <div className={classes.paperStyle}>
             <Paper elevation={3}>
               <div className={classes.questionList}>

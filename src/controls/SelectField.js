@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -8,7 +14,17 @@ import {
   handleTypeSelect,
 } from "../redux/actions";
 
+const useStyles = makeStyles((theme) => ({
+  selectCtrl: {
+    width: "50%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+  },
+}));
+
 export const SelectField = (props) => {
+  const classes = useStyles();
   const { label, options } = props;
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
@@ -32,7 +48,7 @@ export const SelectField = (props) => {
   };
 
   return (
-    <Box my={4} mx="auto" width="50%">
+    <Box my={4} mx="auto" className="selectCtrl">
       <FormControl variant="outlined" fullWidth>
         <InputLabel>{label}</InputLabel>
         <Select labelId={label} value={value} onChange={handleChange}>

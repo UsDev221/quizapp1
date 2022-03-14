@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     width: "60vw",
     height: "75vh",
     margin: "100px auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "90vw",
+      margin: "10px auto",
+    },
   },
   topic: {
     margin: "40px auto 0px auto",
@@ -46,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#4E5BA8",
     },
     width: "50%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 }));
 
